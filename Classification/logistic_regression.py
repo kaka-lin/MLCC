@@ -16,7 +16,7 @@ from tensorflow.python.data import Dataset
 
 from utils import *
 
-tf.logging.set_verbosity(tf.logging.INFO)
+tf.logging.set_verbosity(tf.logging.ERROR)
 pd.options.display.max_rows = 10
 pd.options.display.float_format = '{:.1f}'.format
 
@@ -28,12 +28,12 @@ if __name__ == '__main__':
     )
 
     # Choose the first 12000 (out of 17000) examples for training.
-    training_examples = preprocess_features(california_housing_df.head(100))
-    training_targets = preprocess_targets(california_housing_df.head(100))
+    training_examples = preprocess_features(california_housing_df.head(12000))
+    training_targets = preprocess_targets(california_housing_df.head(12000))
 
     # Choose the last 5000 (out of 17000) examples for validation.
-    validation_examples = preprocess_features(california_housing_df.tail(10))
-    validation_targets = preprocess_targets(california_housing_df.tail(10))
+    validation_examples = preprocess_features(california_housing_df.tail(5000))
+    validation_targets = preprocess_targets(california_housing_df.tail(5000))
 
     # Double-check that we've done the right thing.
     print("Training examples summary:")

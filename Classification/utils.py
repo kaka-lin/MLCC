@@ -52,7 +52,8 @@ def preprocess_targets(california_housing_df, threshold=265000):
 
     output_targets = pd.DataFrame()
 
-    # Scale the target to be in units of thousands of dollars
+    # Create a boolean categorical feature representing whether the
+    # median_house_value is above a set threshold.
     output_targets["median_house_value_is_high"] = (
         california_housing_df["median_house_value"] > threshold
     ).astype(float)
@@ -231,7 +232,7 @@ def train_linear_classifier_model(learning_rate, steps, batch_size, training_exa
     training_log_losses = []
     validation_log_losses = []
 
-    for period in range(0, periods*2):
+    for period in range(0, periods):
         # Training the model, starting from the prior state
         linear_classifier.train(
             input_fn=training_input_fn,
